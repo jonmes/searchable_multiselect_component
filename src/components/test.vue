@@ -52,7 +52,17 @@ const onFieldSearch = (d) => {
 };
 const item = ref({});
 
-const init = ref([]);
+const init = ref([
+  {
+    title: "accountant",
+    esco_code: "2411.1",
+    job_uri:
+      "http://data.europa.eu/esco/occupation/eda0d957-3c3c-4139-b89a-a18bc9e18897",
+    selected: false,
+    id: "2411.1",
+    name: "accountant",
+  },
+]);
 </script>
 
 <template>
@@ -75,7 +85,7 @@ const init = ref([]);
       supporter="max-h-36"
       multiple
       :init="init"
-      init-id="field_of_study"
+      init-id="id"
     >
       {{ item.field }}
       <template v-slot:label>

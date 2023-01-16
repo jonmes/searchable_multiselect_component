@@ -231,6 +231,17 @@ const select = (item) => {
   show.value = false;
 };
 
+if (props.init) {
+  console.log("show int", props.init.length);
+  let initLength = props.init.length;
+  let count = 0;
+  while (initLength) {
+    select(props.init[count]);
+    count++;
+    initLength--;
+  }
+}
+
 const outside = useDebounceFn(() => {
   show.value = false;
 }, 300);
