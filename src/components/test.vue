@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed, inject, watchEffect } from "vue";
+import MultipseSelectNew from "@/components/multi-selecte-new.vue";
 import MultipleSelect from "@/components/multiple-select.vue";
 import { ChevronDownIcon } from "@heroicons/vue/24/outline";
 const axios = inject("axios");
@@ -27,7 +28,7 @@ const startSearch = async () => {
                 esco_code: val.code,
                 // search_hit: val.searchHit,
                 job_uri: val.uri,
-                selected: false,
+                // selected: false,
                 id: val.code,
                 name: val.title,
               };
@@ -46,7 +47,7 @@ const startSearch = async () => {
 };
 
 const onFieldSearch = (d) => {
-  // console.log('search',d )
+  // console.log("search", d);
   search.value = d;
   startSearch();
 };
@@ -58,11 +59,25 @@ const init = ref([
     esco_code: "2411.1",
     job_uri:
       "http://data.europa.eu/esco/occupation/eda0d957-3c3c-4139-b89a-a18bc9e18897",
-    selected: false,
+    // selected: false,
+    id: "2411.1",
+    name: "accountant",
+  },
+  {
+    title: "accountant",
+    esco_code: "2411.1",
+    job_uri:
+      "http://data.europa.eu/esco/occupation/eda0d957-3c3c-4139-b89a-a18bc9e18897",
+    // selected: false,
     id: "2411.1",
     name: "accountant",
   },
 ]);
+
+const onSearch = (d) => {
+  search.value = d;
+  startSearch();
+};
 </script>
 
 <template>
@@ -74,7 +89,7 @@ const init = ref([
       class="border-2 border-red-600"
     /> -->
     {{ item.search }}
-    <MultipleSelect
+    <!-- <MultipleSelect
       :trailingIcon="ChevronDownIcon"
       placeholder="Test"
       name="Test"
@@ -93,6 +108,17 @@ const init = ref([
           Test <span class="text-red-500">*</span>
         </div>
       </template>
-    </MultipleSelect>
+    </MultipleSelect> -->
+    <MultipseSelectNew
+      class="w-1/2"
+      multiple
+      :loading="search_loading"
+      :items="search_result"
+      v-model="item.search"
+      @search="onSearch"
+      value="id"
+      :init="init"
+    >
+    </MultipseSelectNew>
   </div>
 </template>

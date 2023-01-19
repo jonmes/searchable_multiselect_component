@@ -187,11 +187,7 @@ const select = (item) => {
   search.value = undefined;
   if (props.multiple) {
     selected.value[item[props.value]] = !selected.value[item[props.value]];
-    console.log(
-      "selected value",
-      selected.value,
-      Object.values(selected.value)
-    );
+    console.log("selected value", selected.value);
     if (!Object.values(selected.value).includes(false)) {
       console.log("add", item);
       chips.value.push(item);
@@ -332,9 +328,9 @@ const queryList = () => {
           class="border-b select-none relative py-3 px-3 hover:bg-ilo-blue text-gray-600 cursor-pointer"
         >
           <div class="flex items-center justify-between">
-            <span class="text-gray-600 font-semibold block truncate">{{
-              item.name
-            }}</span>
+            <span class="text-gray-600 font-semibold block truncate"
+              >{{ item.name }} {{ selected }} {{ item[value] }}</span
+            >
             <CheckIcon
               v-if="multiple && selected[item[value]]"
               class="w-5 h-5 text-gray-600"
