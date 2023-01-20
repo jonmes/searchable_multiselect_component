@@ -84,7 +84,10 @@ if (props.init) {
 }
 
 const deleteChip = (index) => {
+  console.log("chips", chips.value[index].id);
+  let id = chips.value[index].id;
   chips.value.splice(index, 1);
+  delete selected.value[id];
 };
 
 // const backspaceDelete = ({ which }) => {
